@@ -116,4 +116,12 @@ class NullTest < Test::Unit::TestCase
 			assert_equal(expected, real)
 		end
 	end
+	
+	def test_maybe
+	  null = Maybe(nil)
+	  assert_equal null, null.downcase.strip
+	  assert_equal null, null + 2
+	  assert_equal false, null === nil
+	  assert_equal false, null.truthy?
+	end
 end
