@@ -31,6 +31,10 @@ class Object
 		yield(self)
 		self
 	end
+	
+	def Maybe(value)
+	  value.nil? ? NULL : value
+	end
 end
 
 # Make falsy things tell you so.
