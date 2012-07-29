@@ -5,7 +5,7 @@ The null gem implements the Null Object pattern, which is essentially that every
 call to a null object returns itself. null was inspired by Avdi Grimm's article
 [Null Objects and Falsiness][falsiness].
 
-[falsiness]: http://avdi.org/develop/2011/05/30/null-objects-and-falsiness/
+[falsiness]: http://devblog.avdi.org/2011/05/30/null-objects-and-falsiness/
 
 
 Installation
