@@ -66,12 +66,6 @@ which will help you work around this issue.
 	false | null         # => false
 	nil ^ null           # => false
 
-try?
-~~~~
-
-Requiring `null` defines a new `Object
-
-
 Conversions
 ~~~~~~~~~~~
 
