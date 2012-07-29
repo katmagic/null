@@ -116,4 +116,16 @@ class NullTest < Test::Unit::TestCase
 			assert_equal(expected, real)
 		end
 	end
+
+	def test_to_null
+		[nil, null, void].each do |obj|
+			assert_equal(null, obj.to_null?)
+		end
+
+		TRUTHY_TEST_OBJECTS.each do |obj|
+			assert_equal(obj, obj.to_null?)
+		end
+
+		assert_equal(false, false.to_null?)
+	end
 end

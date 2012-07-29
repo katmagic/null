@@ -101,6 +101,15 @@ automagically.
 	1.5 * (void + 3)     # => 4.5
 	# etc.
 
+If you want to change `nil` to `null`, but leave everything else alone, use
+`to_null?`.
+
+	nil.to_null?         # => null
+	void.to_null?        # => null
+	false.to_null?       # => false
+	5.to_null?           # => 5
+	# etc.
+
 Modules and Classes
 ~~~~~~~~~~~~~~~~~~~
 

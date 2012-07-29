@@ -24,6 +24,11 @@ class Object
 		self
 	end
 
+	# +void+, +nil+, and +null+ return +null+; everything else returns +self+.
+	def to_null?()
+		self
+	end
+
 	# +obj.tap?()+ is equivalent to +obj.tap()+ unless +obj+ is an instance of
 	# NullClass, in which case a block must still be given, but will not be
 	# executed.
@@ -53,9 +58,10 @@ end
 
 class NilClass
 	include Falsiness
-	def &(obj) false end
-	def |(obj) !!obj end
-	def ^(obj) !!obj end
+	def     &(obj) false end
+	def     |(obj) !!obj end
+	def     ^(obj) !!obj end
+	def to_null?() null end
 end
 
 class FalseClass
@@ -91,6 +97,9 @@ module NillishConversions
 
 	# +nil+
 	def to_nil?() nil end
+
+	# +null+
+	def to_null?() null end
 
 	# +nil+
 	def to_param() nil end
@@ -137,6 +146,7 @@ class NullClass
 	def  to_nil?()    nil end # :nodoc:
 	def  inspect() 'null' end # +"null"+
 	def present?()  false end # :nodoc:
+	def to_null?()   null end # :nodoc:
 
 	# Require a block, but don't use it; then return +self+.
 	def tap? # :nodoc:
