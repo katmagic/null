@@ -131,10 +131,7 @@ module RecursiveMethodMissing
 	end
 end
 
-# We implement the Null Object Pattern, i.e. most methods called on us will
-# return +self+. Also, boolean logical operators for +true+, +false+, and +nil+
-# have been redefined so that they depend on the +falsy?+
-class NullClass
+module NullModule
 	include Falsiness
 	include TruthyBooleanOperators
 	include RecursiveMethodMissing
@@ -160,8 +157,20 @@ class NullClass
 	end
 end
 
+# We implement the Null Object Pattern, i.e. most methods called on us will
+# return +self+. Also, boolean logical operators for +true+, +false+, and +nil+
+# have been redefined so that they depend on the +falsy?+
+class NullClass
+	include NullModule
+
+	@@instance = self.new
+	def self.instance; @@instance; end
+	private_class_method :new
+end
+
 # VoidClass instances act like NullClass instances except
-class VoidClass < NullClass
+class VoidClass
+	include NullModule
 	include NillishConversions
 
 	# Become 0 in mathematical operations.
@@ -175,15 +184,19 @@ class VoidClass < NullClass
 	def inspect
 		'void'
 	end
+
+	@@instance = self.new
+	def self.instance; @@instance; end
+	private_class_method :new
 end
 
-NULL = NullClass.new
+NULL = NullClass.instance
 # This is an alias for +NULL+, which is an instance of NullObject.
 def null
 	NULL
 end
 
-VOID = VoidClass.new
+VOID = VoidClass.instance
 # +void+ is an alias for +VOID+, which is like +null+, except that its +to_*+
 # methods are like +nil+'s.
 def void
