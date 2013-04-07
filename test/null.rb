@@ -5,7 +5,7 @@ require 'test/unit'
 class NullTest < Test::Unit::TestCase
 	TRUTHY_TEST_OBJECTS = [1024, 4.20, 4, :twenty, Class.new, Object.new, true,
 	                       method(:method), Array.new, {}, 0, 0.0]
-	NULL_TEST_OBJECTS = [null, void, NullClass.new, VoidClass.new]
+	NULL_TEST_OBJECTS = [null, void, NullClass.instance, VoidClass.instance]
 
 	TRUTHY_BOOLEAN_OBJECTS = [true]
 	GENERATED_FALSIES = [false, nil]
