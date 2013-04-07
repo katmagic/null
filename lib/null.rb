@@ -141,7 +141,6 @@ module NullModule
 	def    null?()   true end # :nodoc:
 	def   empty?()   true end # :nodoc:
 	def  to_nil?()    nil end # :nodoc:
-	def  inspect() 'null' end # +"null"+
 	def present?()  false end # :nodoc:
 	def to_null?()   null end # :nodoc:
 
@@ -162,6 +161,11 @@ end
 # have been redefined so that they depend on the +falsy?+
 class NullClass
 	include NullModule
+
+	# +"null"+
+	def inspect
+		'null'
+	end
 
 	@@instance = self.new
 	def self.instance; @@instance; end
